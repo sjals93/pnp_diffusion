@@ -1,0 +1,21 @@
+activate pnp-diffusion
+
+cd C:\Users\shinx\Documents\GitHub\pnp_diffusion
+
+python run_features_extraction.py --config configs/pnp/feature-extraction-generated.yaml
+
+python run_features_extraction.py --config configs/pnp/feature-extraction-real.yaml
+
+python run_pnp.py --config configs/pnp/pnp-real.yaml
+
+python run_pnp.py --config configs/pnp/pnp-real_fire.yaml
+
+python run_pnp.py --config configs/pnp/pnp-real_child.yaml
+
+python run_pnp.py --config configs/pnp/pnp-real_green.yaml
+
+python run_features_pca.py --config configs/pnp/feature-pca-vis.yaml
+
+python run_self_attn_pca.py --block output_block_4 --experiment horse_in_mud
+
+

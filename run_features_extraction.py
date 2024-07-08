@@ -129,8 +129,8 @@ def main():
         exp_config.config.seed = -1
         exp_config.config.prompt = ""
         exp_config.config.scale = 1.0
-        
-    seed = exp_config.config.seed 
+
+    seed = exp_config.config.seed
     seed_everything(seed)
 
     model = load_model_from_config(model_config, f"{opt.ckpt}")
