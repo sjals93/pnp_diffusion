@@ -1,4 +1,4 @@
-source_experiment_name: "horse_in_mud"  # the experiment name of the source image
+source_experiment_name: "horse_on_grass"  # the experiment name of the source image
 prompts: # text prompts for translations
   - "a photo of a zebra in the snow"
 #  - "a photo of a husky in the grass"

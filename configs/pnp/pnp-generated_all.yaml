@@ -1,12 +1,10 @@
-source_experiment_name: "horse_in_mud"  # the experiment name of the source image
+source_experiment_name: "horse_in_mud_all"  # the experiment name of the source image
 prompts: # text prompts for translations
-  - "a photo of a zebra in the snow"
-#  - "a photo of a husky in the grass"
+#  - "a photo of a zebra in the snow"
+  - "a photo of a husky in the grass"
 #  - "a photo of a lady on the bed"
-#  - "a photo of a lady in the snow"
 #  - "a photo of a girl on the bed"
 #  - "a photo of a blue horse toy in playroom"
-#  - "a photo of a cat in the room"
 scale: 7.5 # unconditional guidance scale. Note that a higher value encourages deviation from the source image
 num_ddim_sampling_steps: # if left empty, defaults to the ddim_steps arg used in the source experiment
 

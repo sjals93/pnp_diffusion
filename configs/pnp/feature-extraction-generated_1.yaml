@@ -1,0 +1,7 @@
+config:
+  experiment_name: "zebra_in_snow"
+  init_img: ""
+  prompt: "a photo of a zebra in the snow"
+  scale: 5.0
+  ddim_steps: 50
+  seed: 52
