@@ -3,7 +3,7 @@
 import torch
 import numpy as np
 from tqdm import tqdm
-from functools import partial
+# from functools import partial
 
 from ldm.modules.diffusionmodules.util import make_ddim_sampling_parameters, make_ddim_timesteps, noise_like, \
     extract_into_tensor
@@ -270,7 +270,7 @@ class DDIMSampler(object):
 
     @torch.no_grad()
     def encode_ddim(self, img, num_steps,conditioning, unconditional_conditioning=None ,unconditional_guidance_scale=1.):
-        
+
         print(f"Running DDIM inversion with {num_steps} timesteps")
         T = 999
         c = T // num_steps
@@ -313,7 +313,7 @@ class DDIMSampler(object):
         # direction pointing to x_t
         dir_xt = (1. - a_next).sqrt() * e_t
         x_next = a_next.sqrt() * pred_x0 + dir_xt
-        return x_next, pred_x0   
+        return x_next, pred_x0
 
     @torch.no_grad()
     def stochastic_encode(self, x0, t, use_original_steps=False, noise=None):
