@@ -1,0 +1,1 @@
+{"experiment_name": "horse_on_grass", "init_img": "", "prompt": "a photo of a horse on the grass", "scale": 5.0, "ddim_steps": 50, "seed": 50, "save_feature_timesteps": [50]}
