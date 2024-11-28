@@ -1,0 +1,12 @@
+config:
+    experiment_name: "dfd_01_uniform_gray_surface"
+    init_img: ""
+    prompt: "a photo of a uniform gray surface"
+    scale: 5.0
+    # ddim_steps: 50
+    seed: 50
+
+
+    init_img: "data/horse.png"
+    ddim_steps: 999 # we use 999 steps for the best reconstruction
+    save_feature_timesteps: 100

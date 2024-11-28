@@ -219,25 +219,40 @@ def main():
 
                 z_enc = None
 
-                # 입력 이미지가 있으면
-                # 입력한 이미지를 노이즈로 만들어서 사용한다.
-                if exp_config.config.init_img != '':
+                ################################################################
 
-                    assert os.path.isfile(exp_config.config.init_img)
+                # # 입력 이미지가 있으면
+                # # 입력한 이미지를 노이즈로 만들어서 사용한다.
+                # if exp_config.config.init_img != '':
 
-                    init_image = load_img(exp_config.config.init_img).to(device)
-                    init_latent = model.get_first_stage_encoding(model.encode_first_stage(init_image))
-                    ddim_inversion_steps = 999
-                    z_enc, _ = sampler.encode_ddim(init_latent, num_steps=ddim_inversion_steps, conditioning=c,unconditional_conditioning=uc,unconditional_guidance_scale=exp_config.config.scale)
+                #     assert os.path.isfile(exp_config.config.init_img)
 
-                # 입력 이미지가 없으면
-                # 랜덤 노말 노이즈를 설정한다.
-                else:
+                #     init_image = load_img(exp_config.config.init_img).to(device)
+                #     init_latent = model.get_first_stage_encoding(model.encode_first_stage(init_image))
+                #     ddim_inversion_steps = 999
+                #     z_enc, _ = sampler.encode_ddim(init_latent, num_steps=ddim_inversion_steps, conditioning=c,unconditional_conditioning=uc,unconditional_guidance_scale=exp_config.config.scale)
 
-                    z_enc = torch.randn([1, opt.C, opt.H // opt.f, opt.W // opt.f], device=device)
+                # # 입력 이미지가 없으면
+                # # 랜덤 노말 노이즈를 설정한다.
+                # else:
+
+                #     z_enc = torch.randn([1, opt.C, opt.H // opt.f, opt.W // opt.f], device=device)
+
+                ################################################################
+
+                # 이미지를 무조건 있어야한다.
+
+                init_image = load_img(exp_config.config.init_img).to(device)
+                init_latent = model.get_first_stage_encoding(model.encode_first_stage(init_image))
+                ddim_inversion_steps = 999
+                z_enc, _ = sampler.encode_ddim(init_latent, num_steps=ddim_inversion_steps, conditioning=c,unconditional_conditioning=uc,unconditional_guidance_scale=exp_config.config.scale)
+
+                ################################################################
 
                 torch.save(z_enc, f"{outpath}/z_enc.pt")
-                samples_ddim, _ = sampler.sample(S=exp_config.config.ddim_steps,
+                samples_ddim, _ = sampler.sample(
+                                # S=exp_config.config.ddim_steps,
+                                S=50,
                                 conditioning=c,
                                 batch_size=1,
                                 shape=shape,
@@ -253,12 +268,16 @@ def main():
                 x_samples_ddim = model.decode_first_stage(samples_ddim)
                 x_samples_ddim = torch.clamp((x_samples_ddim + 1.0) / 2.0, min=0.0, max=1.0)
                 x_samples_ddim = x_samples_ddim.cpu().permute(0, 2, 3, 1).numpy()
+
                 if opt.check_safety:
                     x_samples_ddim = check_safety(x_samples_ddim)
+
                 x_image_torch = torch.from_numpy(x_samples_ddim).permute(0, 3, 1, 2)
 
                 sample_idx = 0
+
                 for x_sample in x_image_torch:
+
                     x_sample = 255. * rearrange(x_sample.cpu().numpy(), 'c h w -> h w c')
                     img = Image.fromarray(x_sample.astype(np.uint8))
                     img.save(os.path.join(sample_path, f"{sample_idx}.png"))

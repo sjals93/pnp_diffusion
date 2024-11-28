@@ -1,0 +1,27 @@
+config:
+    # experiment_name: "solid_gray"
+    # experiment_name: "flat_solid_gray_plane"
+    # experiment_name: "perfect_flat_solid_gray_plane"
+    # experiment_name: "solid_gray_color"
+    # experiment_name: "solid_gray_plane"
+    # experiment_name: "clean_gray_plane"
+    # experiment_name: "clean_gray_surface"
+    # experiment_name: "solid_gray_surface"
+    # experiment_name: "clean_solid_gray_surface"
+    # experiment_name: "gray_surface"
+    # experiment_name: "uniform_gray_surface"
+    experiment_name: "uniform_gray_surface_100"
+    init_img: ""
+    # prompt: "a photo of a solid gray"
+    # prompt: "a photo of a flat solid gray plane"
+    # prompt: "a photo of a perfect flat solid gray plane"
+    # prompt: "a photo of a solid gray color"
+    # prompt: "a photo of a solid gray plane"
+    # prompt: "a photo of a clean gray surface"
+    # prompt: "a photo of a solid gray surface"
+    # prompt: "a photo of a clean solid gray surface"
+    # prompt: "a photo of a gray surface"
+    prompt: "a photo of an uniform gray surface"
+    scale: 5.0
+    ddim_steps: 100
+    seed: 50
