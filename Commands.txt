@@ -18,4 +18,18 @@ python run_features_pca.py --config configs/pnp/feature-pca-vis.yaml
 
 python run_self_attn_pca.py --block output_block_4 --experiment horse_in_mud
 
+----------------------------------------------------------------
 
+cd C:\Users\shinx\Documents\GitHub\pnp_diffusion
+
+conda env create -f environment.yaml
+
+conda activate pnp_diffusion
+
+----------------------------------------------------------------
+
+C:\Users\shinx\anaconda3\envs
+
+conda remove -n pnp_diffusion --all
+
+----------------------------------------------------------------
