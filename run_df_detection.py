@@ -205,9 +205,11 @@ def main():
         torch.save(feature_map, save_path)
 
     assert exp_config.config.prompt is not None
+
     prompts = [exp_config.config.prompt]
 
     precision_scope = autocast if opt.precision=="autocast" else nullcontext
+
     with torch.no_grad():
         with precision_scope("cuda"):
             with model.ema_scope():
@@ -240,19 +242,23 @@ def main():
 
                 ################################################################
 
-                # 이미지를 무조건 있어야한다.
-
                 init_image = load_img(exp_config.config.init_img).to(device)
                 init_latent = model.get_first_stage_encoding(model.encode_first_stage(init_image))
-                ddim_inversion_steps = 999
+
+                if 'ddim_inversion_steps' in exp_config.config:
+                    ddim_inversion_steps = exp_config.config.ddim_inversion_steps
+                else:
+                    ddim_inversion_steps = 999
+
                 z_enc, _ = sampler.encode_ddim(init_latent, num_steps=ddim_inversion_steps, conditioning=c,unconditional_conditioning=uc,unconditional_guidance_scale=exp_config.config.scale)
 
                 ################################################################
 
                 torch.save(z_enc, f"{outpath}/z_enc.pt")
+
                 samples_ddim, _ = sampler.sample(
-                                # S=exp_config.config.ddim_steps,
-                                S=50,
+                                S=exp_config.config.ddim_steps,
+                                # S=50,
                                 conditioning=c,
                                 batch_size=1,
                                 shape=shape,
