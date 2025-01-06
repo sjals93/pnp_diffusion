@@ -1,2 +1,7 @@
 .DS_STORE
 .idea
+*.pt
+*.pyc
+*.png
+/src/clip
+/src/taming-transformers

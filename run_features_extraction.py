@@ -230,11 +230,15 @@ def main():
                     ddim_inversion_steps = 999
                     z_enc, _ = sampler.encode_ddim(init_latent, num_steps=ddim_inversion_steps, conditioning=c,unconditional_conditioning=uc,unconditional_guidance_scale=exp_config.config.scale)
 
+                    print('1111111111111111111111111')
+
                 # 입력 이미지가 없으면
                 # 랜덤 노말 노이즈를 설정한다.
                 else:
 
                     z_enc = torch.randn([1, opt.C, opt.H // opt.f, opt.W // opt.f], device=device)
+
+                    print('22222222222222222')
 
                 torch.save(z_enc, f"{outpath}/z_enc.pt")
                 samples_ddim, _ = sampler.sample(S=exp_config.config.ddim_steps,

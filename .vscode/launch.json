@@ -9,7 +9,7 @@
             "type": "debugpy",
             "request": "launch",
             "program": "${file}",
-            "args": ["--config", "configs/pnp/uniform-gray-surface.yaml"],
+            "args": ["--config", "configs/pnp/feature-extraction-real.yaml"],
             "console": "integratedTerminal"
         }
     ]

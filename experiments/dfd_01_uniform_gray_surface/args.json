@@ -1,0 +1,1 @@
+{"experiment_name": "dfd_01_uniform_gray_surface", "prompt": "", "scale": 1.0, "seed": -1, "init_img": "data/horse.png", "ddim_steps": 50, "ddim_inversion_steps": 999, "save_feature_timesteps": [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100]}
